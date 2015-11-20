@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @member.status %>
+</p>
+
+<p>
+  <strong>Ethnicity:</strong>
+  <%= @member.ethnicity %>
+</p>
+
+<p>
+  <strong>Weight:</strong>
+  <%= @member.weight %>
+</p>
+
+<p>
+  <strong>Height:</strong>
+  <%= @member.height %>
+</p>
+
+<p>
+  <strong>Is veg:</strong>
+  <%= @member.is_veg %>
+</p>
+
+<p>
+  <strong>Drink:</strong>
+  <%= @member.drink %>
+</p>
+
+<p>
+  <strong>Dob:</strong>
+  <%= @member.dob %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @member.image %>
+</p>
+
+<%= link_to 'Edit', edit_member_path(@member) %> |
+<%= link_to 'Back', members_path %>
