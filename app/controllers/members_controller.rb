@@ -1,14 +1,13 @@
 class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
+  before_action :hits
   require 'json'
   require 'open-uri'
 
   # GET /members
   # GET /members.json
   def index
-    # url = 'https://idfy.0x10.info/api/idfy-status?type=json&query=list_member&page=1'
-    # data = JSON.load(open(url))
-    # members = data['members']
+   
     @ethnic = Member.ethnic
     # @members = []
     # members.each do |member|
@@ -33,8 +32,7 @@ class MembersController < ApplicationController
 
 
     @members = Member.all.where('lower(status) like ?', "%#{query}%")
-    @members = Member.all.where('lower(height) like ?', "%#{query}%")
-    # @members = Member.all.where('lower(ethnicity) like ?', "%#{query}%")
+   
                                   
     
                                                                
@@ -98,6 +96,12 @@ class MembersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def hits
+      url = 'https://idfy.0x10.info/api/idfy-status?type=json&query=api_hits'
+      data = JSON.load(open(url))
+      @hits = data['api_hits']
+      
+    end
     def set_member
       @member = Member.find(params[:id])
     end
