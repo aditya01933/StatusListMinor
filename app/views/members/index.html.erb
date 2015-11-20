@@ -1,40 +1,29 @@
+
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Members</h1>
+<div class="posts">
+    <div class="row">
+       <div id="sidebar" class="col-md-2">
+          <b>Ethnicity</b>
+          <br>
+         <% @ethnic.each do |ethnic| %>
+          <%= ethnic %>
+          <br>
+         <% end %>
+       </div>
+      
+       <div id="content" class="col-md-10">
+       <div class="page">
+        <%= render @members %>
+       </div> 
+       </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Status</th>
-      <th>Ethnicity</th>
-      <th>Weight</th>
-      <th>Height</th>
-      <th>Is veg</th>
-      <th>Drink</th>
-      <th>Dob</th>
-      <th>Image</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    </div>
+    
 
-  <tbody>
-    <% @members.each do |member| %>
-      <tr>
-        <td><%= member.status %></td>
-        <td><%= member.ethnicity %></td>
-        <td><%= member.weight %></td>
-        <td><%= member.height %></td>
-        <td><%= member.is_veg %></td>
-        <td><%= member.drink %></td>
-        <td><%= member.dob %></td>
-        <td><%= member.image %></td>
-        <td><%= link_to 'Show', member %></td>
-        <td><%= link_to 'Edit', edit_member_path(member) %></td>
-        <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+</div>
+<%= paginate @members %>
+
+
 

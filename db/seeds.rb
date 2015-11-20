@@ -5,3 +5,17 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+  require 'json'
+  require 'open-uri'
+ i = 1	
+ while i<=200
+	puts url = "https://idfy.0x10.info/api/idfy-status?type=json&query=list_member&page=#{i}"
+    data = JSON.load(open(url))
+    members = data['members']
+    
+    members.each do |member|
+      attributes = member
+      Member.create(attributes)
+    end
+    puts i+=1
+end    

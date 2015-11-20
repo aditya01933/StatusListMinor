@@ -6,15 +6,17 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def index
-    url = 'https://idfy.0x10.info/api/idfy-status?type=json&query=list_member&page=1'
-    data = JSON.load(open(url))
-    members = data['members']
+    # url = 'https://idfy.0x10.info/api/idfy-status?type=json&query=list_member&page=1'
+    # data = JSON.load(open(url))
+    # members = data['members']
+    @ethnic = Member.ethnic
+    # @members = []
+    # members.each do |member|
+    #   attributes = member.except("id")
+    #   @members <<  Member.create(attributes)
+    # end
 
-    @members = []
-    members.each do |member|
-      attributes = member.except("id")
-      @members <<  Member.create(attributes)
-    end
+    @members = Member.order(:id).page(params[:page])
     
   end
 
