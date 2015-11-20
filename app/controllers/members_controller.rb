@@ -16,9 +16,28 @@ class MembersController < ApplicationController
     #   @members <<  Member.create(attributes)
     # end
 
-    @members = Member.order(:id).page(params[:page])
+  if params[:vegan].present?
+
+    @members = Member.where(is_veg: true).order(:id).page(params[:page]) 
+  else
+   @members = Member.order(:id).page(params[:page]) 
+  end 
     
   end
+
+  def search
+    query, page = params[:query].try(:downcase), params[:page] || 1
+
+
+    @members = Member.all.where('lower(status) like ?', "%#{query}%")
+    @members = Member.all.where('lower(height) like ?', "%#{query}%")
+    # @members = Member.all.where('lower(ethnicity) like ?', "%#{query}%")
+                                  
+    
+                                                               
+
+  end
+
 
   # GET /members/1
   # GET /members/1.json
@@ -82,6 +101,6 @@ class MembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:member).permit(:status, :ethnicity, :weight, :height, :is_veg, :drink, :dob, :image)
+      params.require(:member).permit(:status, :ethnicity, :weight, :height,  :vegan, :is_veg, :drink, :dob, :image)
     end
 end

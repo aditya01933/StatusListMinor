@@ -1,6 +1,15 @@
 
 <p id="notice"><%= notice %></p>
-
+<div class="row">
+<div class="col-md-6">
+    <%= form_tag search_path, method: :get do %>
+      <%= text_field_tag :query, params[:query], placeholder: 'Search status and height'%>
+    <% end -%>
+</div>    
+<div class="col-md-6">
+  <%= button_to "List Vegan", members_path, :method => :get, name: 'vegan' , value: "vegan" %>
+</div>
+</div>  
 <div class="posts">
     <div class="row">
        <div id="sidebar" class="col-md-2">

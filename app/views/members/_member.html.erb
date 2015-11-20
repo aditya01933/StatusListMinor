@@ -5,7 +5,7 @@
                   <div class="col-md-3"><%= image_tag(member.image)%></div>
                   <div class="col-md-9">
                     <div class="row">
-                      <div class="col-md-12"><%= @ethnic[member.ethnicity]%></div>
+                      <div class="col-md-12"><%= Member.ethnic[member.ethnicity]%></div>
                     </div>
                      <div class="row">
                        <div class="col-md-12"><%= member.status%></div>
@@ -16,7 +16,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    drink: <%= member.drink%>|vegan: <%= member.is_veg%>| height: <%= member.height%>|weight: <%= member.weight %>
+                    drink: <%= member.drink%>|vegan: <%= member.is_veg%>| height: <%= member.height%> cm|weight: <%= (member.weight/1000.0).round(2) %> KG
                   </div>  
                 </div>
               
