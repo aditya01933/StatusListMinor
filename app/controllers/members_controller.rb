@@ -19,8 +19,11 @@ class MembersController < ApplicationController
   if params[:vegan].present?
 
     @members = Member.where(is_veg: true).order(:id).page(params[:page]) 
-  else
-   @members = Member.order(:id).page(params[:page]) 
+  elsif params[:type].present?
+    @members = Member.where(ethnicity: params[:type]).order(:id).page(params[:page])
+  else  
+    @members = Member.order(:id).page(params[:page])
+
   end 
     
   end

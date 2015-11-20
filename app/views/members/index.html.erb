@@ -10,13 +10,16 @@
   <%= button_to "List Vegan", members_path, :method => :get, name: 'vegan' , value: "vegan" %>
 </div>
 </div>  
+
+
 <div class="posts">
     <div class="row">
        <div id="sidebar" class="col-md-2">
           <b>Ethnicity</b>
           <br>
-         <% @ethnic.each do |ethnic| %>
-          <%= ethnic %>
+         <% @ethnic.each_with_index do |ethnic, index| %>
+          
+          <%= link_to ethnic, members_path(:type => index) %>
           <br>
          <% end %>
        </div>
